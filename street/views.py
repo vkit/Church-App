@@ -233,12 +233,12 @@ class UpcomingList(APIView):
             print e
 
 
-class ResourceList(APIView):
+class KannadaResourceList(APIView):
     permission_classes = (IsAuthenticated,)
     
     def get(self, request):
         try:
-            usermedias = UserMedia.objects.filter(is_active=True)
+            usermedias = UserMedia.objects.filter(langauage__language_name='Kannada', is_active=True)
             lis = []
             for usermedia in usermedias:
                 data = {
@@ -251,9 +251,56 @@ class ResourceList(APIView):
                     'user_name': usermedia.user.username
                 }
                 lis.append(data)
-            return success_response(data={"resource_list": lis})
+            return success_response(data={"kannada_resource_list": lis})
         except Exception as e:
             print e
+
+
+class EnglishResourceList(APIView):
+    permission_classes = (IsAuthenticated,)
+    
+    def get(self, request):
+        try:
+            usermedias = UserMedia.objects.filter(langauage__language_name='English', is_active=True)
+            lis = []
+            for usermedia in usermedias:
+                data = {
+                    'resource_id': usermedia.id,
+                    'langauage_id': usermedia.langauage.id,
+                    'video_url': usermedia.video_link,
+                    'audio': usermedia.audio.url if usermedia.audio else '',
+                    'video_image': usermedia.video_image.url if usermedia.video_image else '',
+                    'user_id': usermedia.user.id,
+                    'user_name': usermedia.user.username
+                }
+                lis.append(data)
+            return success_response(data={"english_resource_list": lis})
+        except Exception as e:
+            print e
+
+
+class TamilResourceList(APIView):
+    permission_classes = (IsAuthenticated,)
+    
+    def get(self, request):
+        try:
+            usermedias = UserMedia.objects.filter(langauage__language_name='Tamil', is_active=True)
+            lis = []
+            for usermedia in usermedias:
+                data = {
+                    'resource_id': usermedia.id,
+                    'langauage_id': usermedia.langauage.id,
+                    'video_url': usermedia.video_link,
+                    'audio': usermedia.audio.url if usermedia.audio else '',
+                    'video_image': usermedia.video_image.url if usermedia.video_image else '',
+                    'user_id': usermedia.user.id,
+                    'user_name': usermedia.user.username
+                }
+                lis.append(data)
+            return success_response(data={"tamil_resource_list": lis})
+        except Exception as e:
+            print e
+
 
 
 class AboutList(APIView):
