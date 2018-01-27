@@ -25,8 +25,7 @@ SECRET_KEY = '2p9)0^!4=fm7yq80)@d531y@5oju&(o(l+y+e6w(kzo6vx1*hj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['prayer-dev.ap-south-1.elasticbeanstalk.com']
 
 # Application definition
 
