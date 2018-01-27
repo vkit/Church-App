@@ -190,6 +190,20 @@ class LikePrayer(APIView):
         except Exception as e:
             print e
 
+    # def get(self, request, prayer_id):
+    #     user = request.user
+    #     try:
+    #         userprofile = Userprofile.objects.get(user=user)
+    #         prayerrequest = PrayerRequest.objects.filter(pk=prayer_id, user=userprofile)
+
+    #         if prayerrequest.exists():
+    #             prayerrequest.delete()
+    #             return success_response(code=9001)
+    #         else:
+    #             return fail_response(error_code=1008)
+    #     except Exception as e:
+    #         print e
+
 
 class UpcomingList(APIView):
     permission_classes = (IsAuthenticated,)
@@ -214,7 +228,7 @@ class UpcomingList(APIView):
                     'annoucement_date': recenet_date.annoucement_date,
                 }
                 lis1.append(data)
-            return success_response(data={'upcoming_annoucement_count': upcoming_dates.count(),'upcoming_list': lis,'recent_list': lis1})
+            return success_response(data={'upcoming_annoucement_count': upcoming_dates.count(),'upcoming_list': lis,'recent_list': lis1, 'recent_count': recenet_dates.count()})
         except Exception as e:
             print e
 
