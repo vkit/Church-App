@@ -50,7 +50,7 @@ class AddLikePrayerSerializer(serializers.Serializer):
 
 class UploadMediaSerializer(serializers.Serializer):
     langauage_id = serializers.IntegerField()
-    video_link = serializers.URLField()
-    audio = serializers.FileField()
-    video_image = serializers.ImageField()
+    video_link = serializers.URLField(required=False)
+    audio = serializers.FileField(required=False)
+    video_image = serializers.ImageField(required=False)
 

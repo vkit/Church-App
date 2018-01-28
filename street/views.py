@@ -190,6 +190,14 @@ class LikePrayer(APIView):
         except Exception as e:
             print e
 
+
+# class LikedUser(APIView):
+#     def get(self, request, prayer_id):
+#         try:
+#             user = request.user
+#             prayer_id = PrayerRequest.objects.get(pk=prayer_id)
+#             like = Like.objects.filter(prayer_request=prayer_id)
+
     # def get(self, request, prayer_id):
     #     user = request.user
     #     try:
@@ -394,6 +402,9 @@ class UploadMedia(APIView):
         try:
             user = request.user
             data = request.data
+            valid, msg = validate_media(data=data)
+            if not valid:
+                return fail_response(error_code=2044, data=msg)
             profile = Userprofile.objects.get(user=user)
             if profile.is_admin:
                 UserMedia.objects.create(
