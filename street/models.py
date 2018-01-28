@@ -164,3 +164,20 @@ class About(models.Model):
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
         return super(About, self).save(*args, **kwargs)
+
+
+class TermsCondition(models.Model):
+    terms_condition = models.TextField()
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    modified_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name_plural = 'TermsCondition'
+
+    def __str__(self):
+        return self.terms_condition
+
+    def save(self, *args, **kwargs):
+        self.modified_at = timezone.now()
+        return super(TermsCondition, self).save(*args, **kwargs)
