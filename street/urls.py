@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^yesturday_list/$', views.PrayerYesturdayList.as_view()),
     url(r'^sevenday_list/$', views.PrayerSevendayList.as_view()),
     url(r'^today_list/$', views.TodayList.as_view()),
-    url(r'^upload_media/$', views.UploadMedia.as_view())
+    url(r'^upload_media/$', views.UploadMedia.as_view()),
+    url(r'^terms_condition/$', views.TermsAndCondition.as_view())
 
 ]

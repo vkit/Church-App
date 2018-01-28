@@ -5,7 +5,7 @@ from datetime import date
 from django.utils import timezone
 
 # from datetime import datetime
-from .models import Userprofile, PrayerRequest, Like, Upcoming, UserMedia, Notification, About, Langauage, UserMedia
+from .models import Userprofile, PrayerRequest, Like, Upcoming, UserMedia, Notification, About, Langauage, TermsCondition
 from datetime import timedelta
 from .constants import *
 import base64
@@ -420,6 +420,20 @@ class UploadMedia(APIView):
                 return fail_response(error_code=1018)
         except Exception as e:
             print e
+
+
+class TermsAndCondition(APIView):
+    def get(self, request):
+        try:
+            terms = TermsCondition.objects.values('terms_condition').filter(is_active=True)
+            if terms.count > 0:
+                terms.first
+            else:
+                terms = dict()
+            return success_response(data=terms)
+        except Exception as e:
+            print e
+
 
 
 # class UploadPrayerMediaView(APIView):
